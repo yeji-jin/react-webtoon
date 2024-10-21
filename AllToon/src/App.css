@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+img {
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+li {
+  list-style: none;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  background: #000;
+  color: #fff;
+}
+#root {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 640px;
+}
