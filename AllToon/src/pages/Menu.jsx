@@ -1,9 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const MenuContainer = styled.div`
   padding: 24px;
   > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
     margin-top: 40px;
   }
 `;
@@ -26,10 +30,8 @@ const MenuItem = styled.li`
   position: relative;
   display: flex;
   gap: 8px;
-  padding: 30px 16px;
-  & + & {
-    border-top: 1px solid #efefef;
-  }
+  border-radius: 12px;
+  background: #2d2d2d;
   i {
     display: inline-flex;
     width: 24px;
@@ -46,6 +48,12 @@ const MenuItem = styled.li`
     transform: translateY(-50%);
     font-size: 24px;
     font-weight: 700;
+  }
+  > a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 30px 16px;
   }
 `;
 
@@ -93,6 +101,10 @@ const MenuList = [
 ];
 
 const Menu = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <MenuContainer>
       <UserInfo>

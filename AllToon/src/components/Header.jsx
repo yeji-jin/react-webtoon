@@ -37,11 +37,14 @@ const HeaderWrapper = styled.div`
   background: #000;
 `;
 const StyledHeader = styled.header`
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 30px 20px;
   > h1 {
+    width: 100%;
+    text-align: center;
     font-size: 40px;
   }
 `;
@@ -68,6 +71,15 @@ const FlexUlWrapper = styled.ul`
   .header_nav_item.active {
     border-bottom: 2px solid #fff;
   }
+`;
+const BtnsWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  /* ${(props = "left") => props.position}: 20px; */
+  ${({ $position = "left" }) => $position}: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 8px;
 `;
 
 const Header = forwardRef((props, ref) => {
@@ -99,19 +111,16 @@ const Header = forwardRef((props, ref) => {
       <HeaderWrapper ref={headerRef}>
         {/* common */}
         <StyledHeader className="Header">
-          <Button text={"선물"} onClick={() => navigate("/gift")} />
+          <BtnsWrapper>
+            {location.pathname === "/menu" && <Button text={"<"} onClick={() => navigate(-1)} />}
+            <Button text={"선물"} onClick={() => navigate("/gift")} />
+          </BtnsWrapper>
           <h1>
             <Link to="/">AllToon</Link>
           </h1>
-          <div className="btns_right">
-            {/* <Button
-              text={"검색"}
-              onClick={() => {
-                navigate("/search");
-              }}
-            ></Button> */}
+          <BtnsWrapper $position={"right"}>
             <Button text={"메뉴"} onClick={() => navigate("/menu")} />
-          </div>
+          </BtnsWrapper>
         </StyledHeader>
         {/* common nav */}
         {ShowHeaderNav && (

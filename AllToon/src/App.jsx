@@ -13,10 +13,9 @@ import TabMyPick from "./components/TabMyPick";
 import TabMyOwn from "./components/TabMyOwn";
 import Notfound from "./pages/Notfound";
 import Footer from "./components/Footer";
+import Loading from "./components/Loading";
 import "./App.css";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
+import "swiper/swiper-bundle.css";
 
 const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const initialState = {
@@ -40,7 +39,7 @@ const reducer = (state, action) => {
     case "SET_HISTORY":
       const updatedHistory = state.history.some((item) => item.id === action.payload.id)
         ? state.history // 존재하면 history를 그대로 반환
-        : [...state.history, action.payload]; // 존재하지 않으면 새 항목을 추가
+        : [action.payload, ...state.history]; // 존재하지 않으면 새 항목을 추가
       localStorage.setItem("myHistory", JSON.stringify(updatedHistory));
       return { ...state, history: updatedHistory };
     case "SET_TODAY":
@@ -48,10 +47,9 @@ const reducer = (state, action) => {
     case "SET_BANNER":
       return { ...state, mainBanner: action.payload };
     case "TOGGLE_PICK":
-      const updatedPicks = state.myPicks.some((item) => item.id === action.payload.id) // myPicks 배열에 클릭한 웹툰의 id와 같은 id를 가진 항목이 있는지 확인하고 있어요. 결과는 true 또는 false로 반환됩니다.
-        ? state.myPicks.filter((item) => item.id !== action.payload.id) // filter를 사용해 해당 id를 가진 웹툰을 배열에서 제거해요. 즉, 사용자가 이미 선택한 웹툰을 다시 클릭했을 때 그 웹툰을 선택 해제하는 거예요.
-        : [...state.myPicks, action.payload]; //action.payload(클릭한 웹툰의 정보)를 기존의 myPicks 배열에 추가합니다. 이렇게 해서 사용자가 새로운 웹툰을 선택하게 됩니다
-
+      const updatedPicks = state.myPicks.some((item) => item.id === action.payload.id) // myPicks 배열에 클릭한 웹툰의 id와 같은 id를 가진 항목이 있는지 확인하, 결과는 true 또는 false로 반환
+        ? state.myPicks.filter((item) => item.id !== action.payload.id) // filter를 사용해 해당 id를 가진 웹툰을 배열에서 제거. 즉, 사용자가 이미 선택한 웹툰을 다시 클릭했을 때 그 웹툰을 선택 해제
+        : [action.payload, ...state.myPicks]; //action.payload(클릭한 웹툰의 정보)를 기존의 myPicks 배열에 추가, 사용자가 새로운 웹툰을 선택
       // updatedPicks를 localStorage에 저장
       localStorage.setItem("myPicks", JSON.stringify(updatedPicks));
       return { ...state, myPicks: updatedPicks };
@@ -81,16 +79,12 @@ function App() {
         newToday = "END";
         console.log("end");
         break;
-      // case "/gift":
-      //   newToday = "NEW";
-      //   console.log("new");
-      //   break;
       case "/":
         newToday = currentDay;
         console.log("main");
         break;
       default:
-        console.log("main2");
+        console.log("default");
         newToday = data.today;
         dispatch({ type: "SET_LOADING", payload: false });
     }
@@ -180,7 +174,7 @@ function App() {
 
   // before data loading
   if (data.isLoading) {
-    return <div>loading</div>;
+    return <Loading />;
   }
   // after data loading
   return (
