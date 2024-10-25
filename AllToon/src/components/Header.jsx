@@ -50,7 +50,6 @@ const StyledHeader = styled.header`
     text-align: center;
     font-size: 40px;
     font-family: "NamumPenScript";
-    /* test */
   }
 `;
 const FlexUlWrapper = styled.ul`
