@@ -20,8 +20,9 @@ const WebtoonBedge = styled.span`
   padding: 2px 4px;
   font-size: 14px;
   font-weight: 700;
-  color: #000;
-  background: yellow;
+  border-radius: 2px;
+  color: ${(props) => (props.$background ? "#fff" : "#000")};
+  background: ${(props) => props.$background || "#ffd200"};
 `;
 const WebtoonImageBox = styled.span`
   position: absolute;
@@ -81,8 +82,8 @@ const WebtoonList = ({ webtoon, isPickHidden = false }) => {
         <WebtoonBedgeContianer>
           {webtoon.isEnd && <WebtoonBedge>완결</WebtoonBedge>}
           {!webtoon.isEnd && <WebtoonBedge>연재중</WebtoonBedge>}
-          {webtoon.isFree && <WebtoonBedge>무료</WebtoonBedge>}
-          {webtoon.isUpdated && <WebtoonBedge>UP</WebtoonBedge>}
+          {webtoon.isFree && <WebtoonBedge $background={"#38564f"}>무료</WebtoonBedge>}
+          {webtoon.isUpdated && <WebtoonBedge $background={"#ff3042"}>UP</WebtoonBedge>}
         </WebtoonBedgeContianer>
         <WebtoonImageBox>
           <img src={webtoon.thumbnail[0]} alt={webtoon.title} />

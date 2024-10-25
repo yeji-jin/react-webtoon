@@ -3,6 +3,9 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import Button from "./Button";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faGift } from "@fortawesome/free-solid-svg-icons";
+
 const header_nav = [
   { id: 0, name: "보관함", path: "/mypick" },
   { id: 1, name: "시간표", path: "/" },
@@ -46,6 +49,7 @@ const StyledHeader = styled.header`
     width: 100%;
     text-align: center;
     font-size: 40px;
+    font-family: "NamumPenScript";
   }
 `;
 const FlexUlWrapper = styled.ul`
@@ -75,7 +79,6 @@ const FlexUlWrapper = styled.ul`
 const BtnsWrapper = styled.div`
   position: absolute;
   top: 50%;
-  /* ${(props = "left") => props.position}: 20px; */
   ${({ $position = "left" }) => $position}: 20px;
   transform: translateY(-50%);
   display: flex;
@@ -113,13 +116,13 @@ const Header = forwardRef((props, ref) => {
         <StyledHeader className="Header">
           <BtnsWrapper>
             {location.pathname === "/menu" && <Button text={"<"} onClick={() => navigate(-1)} />}
-            <Button text={"선물"} onClick={() => navigate("/gift")} />
+            <Button text={<FontAwesomeIcon icon={faGift} />} onClick={() => navigate("/gift")} />
           </BtnsWrapper>
           <h1>
             <Link to="/">AllToon</Link>
           </h1>
           <BtnsWrapper $position={"right"}>
-            <Button text={"메뉴"} onClick={() => navigate("/menu")} />
+            <Button text={<FontAwesomeIcon icon={faBars} />} onClick={() => navigate("/menu")} />
           </BtnsWrapper>
         </StyledHeader>
         {/* common nav */}

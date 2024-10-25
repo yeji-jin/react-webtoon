@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 
 const SectionMainBanner = styled.section`
-  padding: 40px 0 20px;
+  padding: 40px 16px 20px;
   .swiper-button-next,
   .swiper-button-prev {
     width: 40px;
@@ -25,33 +25,25 @@ const BannerList = styled.div`
   position: relative;
   padding-bottom: 50%;
   border-radius: 12px;
-  background: #80d0c7;
+  background: -webkit-radial-gradient(top, circle cover, #3c3b52 0%, #252233 80%);
   color: #fff;
 `;
 const BannerPoster = styled.div`
   position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 55%;
+  right: 12px;
+  top: 12px;
+  bottom: 12px;
+  width: 42%;
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
   }
-  &::before {
-    content: "";
-    position: absolute;
-    left: -10%;
-    width: 58%;
-    height: 100%;
-    background-image: linear-gradient(90deg, #80d0c7 26%, transparent 90%);
-  }
 `;
 const BannerTextBox = styled.div`
   position: absolute;
   left: 10%;
-  bottom: 6%;
+  top: 34%;
   width: 40%;
   font-weight: 700;
   color: inherit;
@@ -60,6 +52,22 @@ const BannerTextBox = styled.div`
     font-size: 32px;
     line-height: 1.5;
   }
+`;
+const BannerBedge = styled.div`
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 6px 10px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 700;
+  background: #ff3042;
+  border-radius: 4px;
 `;
 
 const MainBanner = ({ mainBanner }) => {
@@ -89,6 +97,7 @@ const MainBanner = ({ mainBanner }) => {
             return (
               <SwiperSlide key={banner.id}>
                 <BannerList>
+                  <BannerBedge>오늘의 웹툰</BannerBedge>
                   <BannerPoster>
                     <img src={banner.thumbnail[0]} alt={`웹툰 ${banner.title}`} />
                   </BannerPoster>
