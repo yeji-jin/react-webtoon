@@ -16,8 +16,11 @@ const GiftCoinList = styled.div`
     gap: 8px;
   }
   > button {
-    width: 126px;
+    display: flex;
+    width: 128px;
     padding: 12px 24px;
+    justify-content: center;
+    text-align: center;
     border-radius: 4px;
     background: #00c73c;
     font-size: 18px;

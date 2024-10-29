@@ -73,12 +73,13 @@ const WebtoonList = ({ webtoon, isPickHidden = false }) => {
   };
 
   return (
-    <WebtoonListItem
-      onClick={() => {
-        saveHistory(webtoon);
-      }}
-    >
-      <a href={webtoon.url}>
+    <WebtoonListItem>
+      <a
+        href={webtoon.url}
+        onClick={() => {
+          saveHistory(webtoon);
+        }}
+      >
         <WebtoonBedgeContianer>
           {webtoon.isEnd && <WebtoonBedge>완결</WebtoonBedge>}
           {!webtoon.isEnd && <WebtoonBedge>연재중</WebtoonBedge>}

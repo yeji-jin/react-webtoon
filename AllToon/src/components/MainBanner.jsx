@@ -48,17 +48,13 @@ const BannerTextBox = styled.div`
   font-weight: 700;
   color: inherit;
   h4 {
-    margin-bottom: 24px;
+    margin: 12px 0 24px;
     font-size: 32px;
     line-height: 1.5;
   }
 `;
 const BannerBedge = styled.div`
-  position: absolute;
-  left: 10%;
-  top: 20%;
-  z-index: 2;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -97,13 +93,13 @@ const MainBanner = ({ mainBanner }) => {
             return (
               <SwiperSlide key={banner.id}>
                 <BannerList>
-                  <BannerBedge>오늘의 웹툰</BannerBedge>
+                  <BannerTextBox>
+                    <BannerBedge>오늘의 웹툰</BannerBedge>
+                    <h4>{banner.title}</h4>
+                  </BannerTextBox>
                   <BannerPoster>
                     <img src={banner.thumbnail[0]} alt={`웹툰 ${banner.title}`} />
                   </BannerPoster>
-                  <BannerTextBox>
-                    <h4>{banner.title}</h4>
-                  </BannerTextBox>
                 </BannerList>
               </SwiperSlide>
             );

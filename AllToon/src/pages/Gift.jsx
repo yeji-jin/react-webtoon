@@ -66,12 +66,12 @@ const MyCoinInfo = styled.div`
   }
 `;
 const SectionTitle = styled.h5`
-  display: inline-flex;
-  margin-bottom: 16px;
-  padding: 12px 24px;
-  font-size: 18px;
+  display: flex;
+  margin-bottom: 24px;
+  padding: 16px 0;
+  font-size: 20px;
+  font-weight: 700;
   color: #efefef;
-  border-bottom: 1px solid #efefef;
 `;
 
 const Gift = () => {
@@ -84,7 +84,7 @@ const Gift = () => {
         </h5>
         <p>0 개</p>
       </MyCoinInfo>
-      <SectionTitle>&lt; 코인 충전하기 &gt;</SectionTitle>
+      <SectionTitle>코인 충전하기</SectionTitle>
       <GiftItem GiftList={GiftList} />
     </>
   );

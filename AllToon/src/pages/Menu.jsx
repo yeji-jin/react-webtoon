@@ -34,6 +34,7 @@ const MenuItem = styled.li`
   background: #2d2d2d;
   i {
     display: inline-flex;
+    align-items: center;
     width: 24px;
     height: 24px;
   }
